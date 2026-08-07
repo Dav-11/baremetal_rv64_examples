@@ -17,22 +17,22 @@ all: $(ELF_NAME)
 $(OUT_DIR):
 	mkdir -p $@
 
-$(OUT_DIR)/entry.o: $(SRC_DIR)/entry.S $(OUT_DIR)
+$(OUT_DIR)/entry.o: $(SRC_DIR)/entry.asm $(OUT_DIR)
 	$(CLANG) \
 		--target=riscv64 \
 		-march=rv64gc \
 		-mabi=lp64d \
 		-mcmodel=medany \
-		-c $(SRC_DIR)/entry.S \
+		-c $(SRC_DIR)/entry.asm \
 		-o $@
 
-$(OUT_DIR)/entry_gem5.o: $(SRC_DIR)/entry_gem5.S $(OUT_DIR)
+$(OUT_DIR)/entry_gem5.o: $(SRC_DIR)/entry_gem5.asm $(OUT_DIR)
 	$(CLANG) \
 		--target=riscv64 \
 		-march=rv64gc \
 		-mabi=lp64d \
 		-mcmodel=medany \
-		-c $(SRC_DIR)/entry_gem5.S \
+		-c $(SRC_DIR)/entry_gem5.asm \
 		-o $@
 
 $(OBJ_NAME): $(SRC_FILE) $(OUT_DIR)
