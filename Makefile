@@ -26,6 +26,15 @@ $(OUT_DIR)/entry.o: $(SRC_DIR)/entry.S $(OUT_DIR)
 		-c $(SRC_DIR)/entry.S \
 		-o $@
 
+$(OUT_DIR)/entry_gem5.o: $(SRC_DIR)/entry_gem5.S $(OUT_DIR)
+	$(CLANG) \
+		--target=riscv64 \
+		-march=rv64gc \
+		-mabi=lp64d \
+		-mcmodel=medany \
+		-c $(SRC_DIR)/entry_gem5.S \
+		-o $@
+
 $(OBJ_NAME): $(SRC_FILE) $(OUT_DIR)
 	$(CLANG) \
 		--target=riscv64 \
@@ -36,10 +45,10 @@ $(OBJ_NAME): $(SRC_FILE) $(OUT_DIR)
 		-c $(SRC_FILE) \
 		-o $@
 
-$(ELF_NAME): $(OUT_DIR)/entry.o $(OBJ_NAME) $(LINKER_SCRIPT)
+$(ELF_NAME): $(OUT_DIR)/entry_gem5.o $(OBJ_NAME) $(LINKER_SCRIPT)
 	$(LLD) \
 		-T $(LINKER_SCRIPT) \
-		$(OUT_DIR)/entry.o \
+		$(OUT_DIR)/entry_gem5.o \
 		$(OBJ_NAME) \
 		-o $@
 
