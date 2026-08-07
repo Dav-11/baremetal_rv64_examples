@@ -1,3 +1,12 @@
+# MacOS
+.DS_Store
+
+# IDEs
+.idea
+.vscode
+.fleet
+.zed
+
 # Prerequisites
 *.d
 
