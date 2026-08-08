@@ -3,8 +3,8 @@ ENTRY(_start_add)
 MEMORY
 {
   /* The address of the first instruction for each slice is defined here by the ORIGIN of each memory region. */
-  slice_add (rwx)    : ORIGIN = 0x80000000, LENGTH = 1M
-  slice_select (rwx) : ORIGIN = 0x80100000, LENGTH = 1M
+  slice_add (rwx)    : ORIGIN = 0x00000000, LENGTH = 1M
+  slice_select (rwx) : ORIGIN = 0x00100000, LENGTH = 1M
 }
 
 SECTIONS
